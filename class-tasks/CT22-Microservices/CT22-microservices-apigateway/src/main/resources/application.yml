@@ -1,0 +1,40 @@
+#spring:
+#  application:
+#    name: apigateway
+#
+#  cloud:
+#    discovery:
+#      enabled: true
+#
+#    gateway:
+#      server:
+#        webflux:
+#          routes:
+#            - id: order-service
+#              uri: lb://ORDER-SERVICE
+#              predicates:
+#                - Path=/orders/**
+#
+#            - id: product-service
+#              uri: lb://PRODUCT-SERVICE
+#              predicates:
+#                - Path=/products/**
+#
+#server:
+#  port: 8085
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: api-gateway
+
+  config:
+    import: configserver:http://localhost:8888
+
+  cloud:
+    config:
+      fail-fast: true
